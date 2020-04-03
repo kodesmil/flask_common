@@ -9,8 +9,7 @@ class UserSchema(Schema):
     last_synced_at = fields.DateTime()
 
 
-def get_user(db, request_data):
-    user_id = request_data['user_id']
+def get_user(db, user_id):
     match = {'auth_user_id': user_id}
     user = db.users.find_one(match)
     user_schema = UserSchema().load({
